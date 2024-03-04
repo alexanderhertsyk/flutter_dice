@@ -19,7 +19,7 @@ class DiceApp extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: const Text(
-            'Dicee1',
+            'Dicee',
             style: TextStyle(
               color: Colors.white,
             ),
@@ -41,7 +41,12 @@ class DicePage extends StatefulWidget {
 
 class _DicePageState extends State<DicePage> {
   int _dice1Value = 1;
-  int _dice2Value = 2;
+  int _dice2Value = 1;
+
+  void raiseDices() => setState(() {
+        _dice1Value = Random().nextInt(6) + 1;
+        _dice2Value = Random().nextInt(6) + 1;
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -51,21 +56,13 @@ class _DicePageState extends State<DicePage> {
           Expanded(
             child: TextButton(
               child: Image.asset('images/dice$_dice1Value.png'),
-              onPressed: () => {
-                setState(() {
-                  _dice1Value = Random().nextInt(5) + 1;
-                }),
-              },
+              onPressed: () => raiseDices(),
             ),
           ),
           Expanded(
             child: TextButton(
               child: Image.asset('images/dice$_dice2Value.png'),
-              onPressed: () => {
-                setState(() {
-                  _dice2Value = Random().nextInt(5) + 1;
-                }),
-              },
+              onPressed: () => raiseDices(),
             ),
           ),
         ],
